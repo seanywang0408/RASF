@@ -1,4 +1,4 @@
-# Representation-Agnostic Shape Fields 
+# Representation-Agnostic Shape Fields (WIP)
 
 This is the official code of ICLR'22 paper **Representation-Agnostic Shape Fields** written in PyTorch ([openreview](https://openreview.net/forum?id=-ngwPqanCEZ)) ([arxiv]()).
 
@@ -13,8 +13,8 @@ Since a large parts of our downstream experiments are modified based on other co
 - [RASF.py](./RASF.py): The basic module of RASF
 - [experiments/](./experiments):
     - [pointclouds](./experiments/pointclouds): Downstream tasks on point clouds.
-    - meshes (TBD): Downstream tasks on meshes.
-    - voxels (TBD): Downstream tasks on voxels.
+    - meshes (WIP): Downstream tasks on meshes.
+    - voxels (WIP): Downstream tasks on voxels.
     - [RASF_pretraining](./experiments/pointclouds): Pretrain RASF on pretext tasks.
     - [utils](./experiments/utils): Utils for training.
     - [config.py](./experiments/config.py): Configurations for paths and settings.

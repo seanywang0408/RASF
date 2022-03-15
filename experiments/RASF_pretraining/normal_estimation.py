@@ -3,6 +3,8 @@ import time
 from tqdm import tqdm
 
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 import _init_path
@@ -22,7 +24,7 @@ backup_terminal_outputs(save_path)
 backup_code(save_path)
 
 batch_size = 32
-num_workers = 8
+num_workers = 0
 num_epochs = 150
 
 num_input_points = 32

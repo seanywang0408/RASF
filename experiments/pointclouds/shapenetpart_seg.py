@@ -16,9 +16,9 @@ from utils.training_utils import backup_terminal_outputs, backup_code, set_seed
 
 save_path = os.path.join('./log/shapenetpart_seg', time.strftime("%y%m%d_%H%M%S"))
 
-with_RASF = False
+with_RASF = cfg.with_RASF
 sd_path = cfg.rasf_weights_path
-model_name = 'pointnet2_msg' # pointnet or pointnet2_msg
+backbone = cfg.backbone # pointnet or pointnet2_msg
 
 print('save_path:', save_path)
 os.makedirs(save_path, exist_ok=True)
@@ -43,10 +43,10 @@ num_part = 50
 num_classes = 16
 
 
-if model_name == 'pointnet':
+if backbone == 'pointnet':
     from backbones.pointnet_part_seg import get_model
     batch_size = 32
-elif model_name == 'pointnet2_msg':
+elif backbone == 'pointnet2_msg':
     from backbones.pointnet2_part_seg import get_model_msg as get_model
     batch_size = 16
 else:
@@ -117,7 +117,7 @@ for e in range(num_epochs):
             data = torch.cat([data.transpose(2,1), field.batch_samples(data[:,:,:3])], 1)
         else:
             data = data.transpose(2, 1)
-        if model_name=='pointnet':
+        if backbone=='pointnet':
             output, trans_feat = model(data, to_categorical(category, num_classes))
             output = output.contiguous().view(-1, num_part)
             loss = criterion(output, seg)
@@ -177,7 +177,7 @@ for e in range(num_epochs):
                 data = torch.cat([data.transpose(2,1), field.batch_samples(data[:,:,:3])], 1)
             else:
                 data = data.transpose(2, 1)
-            if model_name=='pointnet':
+            if backbone=='pointnet':
                 output, trans_feat = model(data, to_categorical(category, num_classes))
             else:
                 output = model(data, to_categorical(category, num_classes))

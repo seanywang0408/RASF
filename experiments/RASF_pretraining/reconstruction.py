@@ -4,7 +4,10 @@ from tqdm import tqdm
 
 import trimesh
 import numpy as np
+
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 import _init_path
@@ -15,7 +18,7 @@ from utils.training_utils import backup_terminal_outputs, backup_code, set_seed
 from utils.chamfer_distance import ChamferDistance
 
 
-save_path = os.path.join('./log/recon', time.strftime("%y%m%d_%H%M%S")+)
+save_path = os.path.join('./log/recon', time.strftime("%y%m%d_%H%M%S"))
 os.makedirs(save_path, exist_ok=True)
 print('save_path', save_path)
 
@@ -23,7 +26,7 @@ backup_terminal_outputs(save_path)
 backup_code(save_path)
 
 batch_size = 64
-num_workers = 8
+num_workers = 0
 num_epochs = 150
 
 num_input_points = 24

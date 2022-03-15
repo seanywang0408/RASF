@@ -14,9 +14,9 @@ from utils.training_utils import backup_terminal_outputs, backup_code, set_seed
 
 save_path = os.path.join('./log/modelnet40_cls', time.strftime("%y%m%d_%H%M%S"))
 
-with_RASF = False
+with_RASF = cfg.with_RASF
 sd_path = cfg.rasf_weights_path
-model_name = 'pointnet' # pointnet or pointnet2_msg
+backbone = cfg.backbone # pointnet or pointnet2_msg
 withnormal = False
 optimize_field = False
 
@@ -25,7 +25,7 @@ print('save_path:', save_path)
 os.makedirs(save_path, exist_ok=True)
 backup_terminal_outputs(save_path)
 backup_code(save_path, marked_in_parent_folder=['utils',])
-# set_seed(40)
+
 if with_RASF:
     print('RASF weights:', sd_path)
 else:
@@ -41,12 +41,13 @@ rasf_channel = cfg.rasf_channel
 num_local_points = 32
 data_path = cfg.ModelNet40_path
 
-if model_name == 'pointnet':
+if backbone == 'pointnet':
     from backbones.pointnet import get_model
     batch_size = 128
-elif model_name == 'pointnet2_msg':
-    from pointnet2 import get_model_msg as get_model
+elif backbone == 'pointnet2_msg':
+    from backbones.pointnet2 import get_model_msg as get_model
     batch_size = 16 # reduce batch size due to the limit of gpu memory
+    set_seed(14)
 else:
     raise ValueError('Invalid Model Name')
 
@@ -116,7 +117,7 @@ for e in range(num_epochs):
         else:
             data = data.transpose(2, 1)
         # print(data.shape)
-        if model_name=='pointnet':
+        if backbone=='pointnet':
             output, trans_feat = model(data)
             loss = criterion(output, category.view(-1))
         else:
@@ -161,7 +162,7 @@ for e in range(num_epochs):
                 data = torch.cat([data.transpose(2,1), field.batch_samples(data[:,:,:3])], 1)
             else:
                 data = data.transpose(2, 1)
-            if model_name=='pointnet':
+            if backbone=='pointnet':
                 pred, _ = model(data)
             else:
                 pred = model(data)

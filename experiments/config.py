@@ -5,8 +5,17 @@ cfg = CN()
 '''
 RASF configs
 '''
+cfg.with_RASF = True
 cfg.rasf_resolution = 16
 cfg.rasf_channel = 32
+
+
+'''
+downstream backbones:
+pointnet, pointnet2_msg
+'''
+cfg.backbone = 'pointnet2_msg'
+
 
 
 '''
