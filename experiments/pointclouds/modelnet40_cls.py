@@ -19,7 +19,7 @@ sd_path = cfg.rasf_weights_path
 backbone = cfg.backbone # pointnet or pointnet2_msg
 withnormal = False
 optimize_field = False
-
+set_seed(1)
 
 print('save_path:', save_path)    
 os.makedirs(save_path, exist_ok=True)
@@ -38,22 +38,27 @@ num_epochs = 150
 
 rasf_resolution = cfg.rasf_resolution
 rasf_channel = cfg.rasf_channel
-num_local_points = 32
+
 data_path = cfg.ModelNet40_path
 
 if backbone == 'pointnet':
     from backbones.pointnet import get_model
     batch_size = 128
+    lr = 0.001
+    npoint = 1024
+    num_local_points = 32
 elif backbone == 'pointnet2_msg':
     from backbones.pointnet2 import get_model_msg as get_model
     batch_size = 16 # reduce batch size due to the limit of gpu memory
-    set_seed(14)
+    lr = 0.001
+    npoint = 4096
+    num_local_points = 128
 else:
     raise ValueError('Invalid Model Name')
 
 
-train_set = ModelNetDataset(data_path, split='train', normal_channel=withnormal)
-test_set = ModelNetDataset(data_path, split='test', normal_channel=withnormal)
+train_set = ModelNetDataset(data_path, split='train', npoint=npoint, normal_channel=withnormal)
+test_set = ModelNetDataset(data_path, split='test', npoint=npoint, normal_channel=withnormal)
 
 train_loader = DataLoader(train_set,
                           batch_size=batch_size, shuffle=True,
@@ -84,7 +89,7 @@ if optimize_field:
     optimized_param = list(model.parameters()) + list(field.parameters())
 else:
     optimized_param = model.parameters()
-optimizer = torch.optim.Adam(optimized_param, lr=0.001)
+optimizer = torch.optim.Adam(optimized_param, lr=lr)
 scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[50,100], gamma=0.2)
 
 

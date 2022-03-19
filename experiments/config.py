@@ -1,3 +1,4 @@
+from numpy import False_
 from yacs.config import CfgNode as CN
 
 cfg = CN()
@@ -22,5 +23,5 @@ cfg.backbone = 'pointnet2_msg'
 paths
 '''
 cfg.rasf_weights_path = '../weights/recon_weights_16res32dim64neigh32input.pt'
-cfg.ModelNet40_path = '/media/sdb1/Data/modelnet40_normal_resampled'#'./data/modelnet40_normal_resampled'
+cfg.ModelNet40_path = '/data1/hxy/data/modelnet40_normal_resampled'#'./data/modelnet40_normal_resampled'
 cfg.ShapeNetPart_path = '/data1/hxy/data/shapenetcore_partanno_segmentation_benchmark_v0_normal'

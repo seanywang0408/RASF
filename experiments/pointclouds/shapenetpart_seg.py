@@ -139,7 +139,7 @@ for e in range(num_epochs):
         total_num += bz
         
         num_batches += 1
-        print(train_accuracy/total_num)
+        # print(train_accuracy/total_num)
         
     train_instance_acc = train_accuracy / total_num
     print('Train loss:', train_loss / num_batches)

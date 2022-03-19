@@ -5,7 +5,7 @@ import torch.utils.data
 import torch.nn.functional as F
 # from pointnet import STN3d, STNkd, feature_transform_reguliarzer
 
-from pointnet_utils import PointNetSetAbstractionMsg,PointNetSetAbstraction,PointNetFeaturePropagation
+from .pointnet_utils import PointNetSetAbstractionMsg,PointNetSetAbstraction,PointNetFeaturePropagation
 
 
 class get_model_msg(nn.Module):
