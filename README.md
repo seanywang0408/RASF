@@ -68,7 +68,7 @@ Modify ``./experiments/config.py`` to determine whether to use RASF embeddings a
 
 ## Acknowledgement and Citation
 
-This codebase borrows a lot from [Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch). Thanks for their helps!
+This codebase borrows a lot from [Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch). Thanks for their help!
 
 If you find this project useful in your research, please cite the following papers:
 ``` bibtex
