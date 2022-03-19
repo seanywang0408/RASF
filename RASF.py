@@ -33,10 +33,12 @@ class RASF(nn.Module):
         relative_local_points = local_points - batch_points.unsqueeze(2)
         
         if self.training:
+            # learn zoom_factor from training samples, place the KNN points into the range of RASF grid
             zoom_factor = torch.max(relative_local_points.min().abs(), relative_local_points.max().abs())
             with torch.no_grad():
                 self.zoom_factor = self.momentum * zoom_factor + (1 - self.momentum) * self.zoom_factor
         else:
+            # fix zoom_factor in inference to speed up
             zoom_factor = self.zoom_factor
 
         relative_local_points = relative_local_points / zoom_factor
