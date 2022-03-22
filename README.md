@@ -1,6 +1,6 @@
 # Representation-Agnostic Shape Fields
 
-This is the official code of ICLR'22 paper **Representation-Agnostic Shape Fields** written in PyTorch ([openreview](https://openreview.net/forum?id=-ngwPqanCEZ)) ([arxiv]()).
+This is the official code of ICLR'22 paper **Representation-Agnostic Shape Fields** written in PyTorch ([openreview](https://openreview.net/forum?id=-ngwPqanCEZ)) ([arxiv](https://arxiv.org/abs/2203.10259)).
 
 ## Features
 ![](./assets/overhead.jpg)
@@ -35,7 +35,7 @@ We show the usage of RASF on point clouds data. Demos on meshes and voxels would
 ```
 # inference for a batch of point clouds
 rasf = RASF()
-rasf.load_state_dict(torch.load('./weights/recon_weights.pt'))
+rasf.load_state_dict(torch.load('./experiments/weights/recon_weights.pt'))
 
 pcd = torch.rand(16,1000,3) # shape: [batch, num_p, 3]
 RASF_embedding = rasf.batch_samples(pcd) # shape: [batch, rasf_channel, num_p]
