@@ -14,14 +14,14 @@ Representation-Agnostic Shape Fields (RASF) is a generalizable and computation-e
 
 - [RASF.py](./RASF.py): The basic module of RASF
 - [experiments/](./experiments):
-    - [pointclouds](./experiments/pointclouds): Downstream tasks on point clouds.
-    - meshes (WIP): Downstream tasks on meshes.
-    - voxels (WIP): Downstream tasks on voxels.
-    - [RASF_pretraining](./experiments/pointclouds): Pretrain RASF on pretext tasks.
-    - [utils](./experiments/utils): Utils for training.
+    - [pointclouds/](./experiments/pointclouds): Downstream tasks on point clouds.
+    - meshes/ (WIP): Downstream tasks on meshes.
+    - voxels/ (WIP): Downstream tasks on voxels.
+    - [RASF_pretraining/](./experiments/pointclouds): Pretrain RASF on pretext tasks.
+    - [utils/](./experiments/utils): Utils for training.
     - [config.py](./experiments/config.py): Configurations for paths and settings.
-    - [weights](./experiments/weights): Directory to place the pretrained RASF weights.
-    - [data](./experiments/data): Directory to place the downloaded datasets.
+    - [weights/](./experiments/weights): Directory to place the pretrained RASF weights.
+    - [data/](./experiments/data): Directory to place the downloaded datasets.
 
 ## Requirements
 Only basic PyTorch packages are needed.
