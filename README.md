@@ -1,6 +1,8 @@
 # Representation-Agnostic Shape Fields
 
-This is the official code of ICLR'22 paper **Representation-Agnostic Shape Fields** written in PyTorch ([openreview](https://openreview.net/forum?id=-ngwPqanCEZ)) ([arxiv](https://arxiv.org/abs/2203.10259)).
+This is the official code of ICLR'22 paper **Representation-Agnostic Shape Fields** written in PyTorch.
+
+### [OpenReview](https://openreview.net/forum?id=-ngwPqanCEZ) | [arXiv](https://arxiv.org/abs/2203.10259)
 
 ## Features
 ![](./assets/overhead.jpg)
